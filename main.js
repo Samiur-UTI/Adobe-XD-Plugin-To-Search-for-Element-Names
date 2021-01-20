@@ -47,7 +47,7 @@ function show(event) {
 
 function update() {
     let form = document.querySelector("form");
-    let result = document.querySelector("#result").innerHTML;
+    let result = document.querySelector("#result");
     let query = String(document.querySelector("#search").value);
     function searchFunction (){
         if (query || selection.items.length>1) {
@@ -71,10 +71,9 @@ function update() {
                 })
             }
             if(resultContent.length){
-                for(let i=0;i<resultContent.length;i++){
-                    result = resultContent[i];
-                }
-                console.log(result)
+                resultContent.forEach(function(items){
+                    result.innerHTML = `<ul>${items}</ul>`;
+                })
             }
         }
     }

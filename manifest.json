@@ -1,0 +1,23 @@
+{
+  "name" : "searchTags",
+  "host" : {
+    "app" : "XD",
+    "minVersion" : "21.0"
+  },
+  "id" : "c3a9f690",
+  "icons" : [ {
+    "path" : "images/icon@1x.png",
+    "width" : 24,
+    "height" : 24
+  }, {
+    "path" : "images/icon@2x.png",
+    "width" : 48,
+    "height" : 48
+  } ],
+  "uiEntryPoints" : [ {
+    "type": "panel",
+        "label": "Search Panel",
+        "panelId": "search"
+  } ],
+  "version" : "0.0.1"
+}

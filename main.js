@@ -66,16 +66,20 @@ function update() {
             const resultContent = [];
             if(resultToPrint.length){
                 resultToPrint.forEach(item =>{
-                    let itemsToShow = `<h1>${item}</h1>`;
+                    let itemsToShow = `<li>${item}</li>`;
                     resultContent.push(itemsToShow);
                 })
             }
             if(resultContent.length){
-                resultContent.forEach(function(items){
-                    result.innerHTML = `<ul>${items}</ul>`;
+                resultContent.forEach(item => {
+                    result.insertAdjacentHTML('afterend', item);
+                    //result.innerHTML += `${item}`;
                 })
+                
             }
+            console.log(result.innerHTML)
         }
+        
     }
     form.addEventListener("submit", searchFunction);
 }

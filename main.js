@@ -36,7 +36,6 @@ function create() {
         `
     panel = document.createElement("div");
     panel.innerHTML = HTML;
-    //panel.querySelector("form").addEventListener("submit", increaseRectangleSize);
 
     return panel;
 }
@@ -50,10 +49,12 @@ function update() {
     let result = document.querySelector("#result");
     let query = String(document.querySelector("#search").value);
     function searchFunction (){
-        if (query || selection.items.length>1) {
+        if (query && selection.items.length>1) {
             const arrToQuery = [];
+            const elementNames = [];
             selection.items.forEach(node => {
                 let searchResult = String(node.name);
+                elementNames.push(searchResult);
                 let appendedTag = searchResult.split(" ")[0];
                 arrToQuery.push(appendedTag);
             })
@@ -63,23 +64,31 @@ function update() {
                     resultToPrint.push(item);
                 } 
             })
+            const realNames = [];
+            elementNames.forEach(name => {
+                let temp = String(name.split(" ")[0]);
+                for(let i=0;i<resultToPrint.length;i++){
+                    if(resultToPrint[i] === temp){
+                        realNames.push(name)
+                    }
+                }
+            })
+            const realResult = [...new Set(realNames)];
             const resultContent = [];
-            if(resultToPrint.length){
-                resultToPrint.forEach(item =>{
+            if(realResult.length){
+                realResult.forEach(item =>{
                     let itemsToShow = `<li>${item}</li>`;
                     resultContent.push(itemsToShow);
                 })
             }
             if(resultContent.length){
+                //console.log(resultContent)
                 resultContent.forEach(item => {
                     result.insertAdjacentHTML('afterend', item);
-                    //result.innerHTML += `${item}`;
                 })
-                
             }
-            console.log(result.innerHTML)
+            return result
         }
-        
     }
     form.addEventListener("submit", searchFunction);
 }
